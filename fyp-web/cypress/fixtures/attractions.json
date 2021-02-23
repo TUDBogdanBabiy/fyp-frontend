@@ -1,0 +1,68 @@
+[
+    {
+        "status": "open",
+        "time_slots": [
+            {
+                "start_time": "12:00",
+                "end_time": "12:24.99999999999996"
+            }
+        ],
+        "ratings": [],
+        "_id": "6033e238f6709f4a30727fb7",
+        "title": "Skyclimb",
+        "description": "Some description about the Skyclimb attraction.",
+        "price": 9,
+        "opening_time": "12:00",
+        "closing_time": "18:00",
+        "max_customers": 24,
+        "min_age": 9,
+        "max_weight": 114,
+        "min_height": 135,
+        "__v": 0
+    },
+    {
+        "status": "open",
+        "time_slots": [
+            {
+                "start_time": "12:00",
+                "end_time": "12:15"
+            }
+        ],
+        "ratings": [],
+        "_id": "6033e2ecf6709f4a30727fb8",
+        "title": "Wall Climb",
+        "description": "Description about the climbing wall activity.",
+        "price": 5,
+        "opening_time": "12:00",
+        "closing_time": "18:00",
+        "max_customers": 5,
+        "min_age": null,
+        "max_weight": 114,
+        "min_height": 120,
+        "__v": 0
+    },
+    {
+        "status": "open",
+        "time_slots": [
+            {
+                "start_time": "12:00",
+                "end_time": "12:20.00000000000004"
+            },
+            {
+                "start_time": "12:20.00000000000004",
+                "end_time": "12:39.99999999999996"
+            }
+        ],
+        "ratings": [],
+        "_id": "6033e3b4f6709f4a30727fb9",
+        "title": "Zipline",
+        "description": "Description about the zipline attraction.",
+        "price": 6.5,
+        "opening_time": "12:00",
+        "closing_time": "18:00",
+        "max_customers": 2,
+        "max_weight": 114,
+        "min_height": 135,
+        "__v": 0
+    }
+]

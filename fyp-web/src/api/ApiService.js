@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_SERVICE_DEFAULT_OPTS = {
-  apiUrl: 'http://localhost:3000',
+  apiUrl: "http://localhost:3000",
   resource: ""
 };
 
@@ -16,7 +16,6 @@ class ApiService {
       baseURL,
       headers: {
         Accept: "application/json",
-        auth_token: localStorage.token,
         ...headers
       }
     });
@@ -33,13 +32,19 @@ class ApiService {
     return this._request({
       ...opts,
       method: "post",
+      headers: {
+        auth_token: localStorage.token
+      },
       data
     });
   }
-  async list(opts = {}) {
-    const data = await this._request({
+  list(opts = {}) {
+    const data = this._request({
       ...opts,
-      method: "get"
+      method: "get",
+      headers: {
+        auth_token: localStorage.token
+      }
     });
 
     return data;
@@ -48,6 +53,9 @@ class ApiService {
     return this._request({
       ...opts,
       method: "post",
+      headers: {
+        auth_token: localStorage.token
+      },
       url: `/${slug}`,
       data
     });
@@ -56,13 +64,19 @@ class ApiService {
     return this._request({
       ...opts,
       method: "get",
+      headers: {
+        auth_token: localStorage.token
+      },
       url: `/${slug}`
     });
   }
   update(slug, data, opts = {}) {
     return this._request({
       ...opts,
-      method: "put",
+      method: "patch",
+      headers: {
+        auth_token: localStorage.token
+      },
       data,
       url: `/${slug}`
     });
@@ -71,6 +85,9 @@ class ApiService {
     return this._request({
       ...opts,
       method: "delete",
+      headers: {
+        auth_token: localStorage.token
+      },
       url: `/${slug}`,
       data
     });

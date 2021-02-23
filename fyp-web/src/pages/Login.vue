@@ -57,17 +57,21 @@
         <div class="row q-mt-md"></div>
         <div class="row q-mt-md">
           <div class="col-4 q-pt-sm"><q-separator horizontal /></div>
-          <div class="col-4 text-center">Or</div>
+          <div class="col-4 text-center text-grey-7">Or</div>
           <div class="col-4 q-pt-sm"><q-separator horizontal /></div>
         </div>
         <div class="row q-mt-md">
           <GoogleLogin
-            class="google-btn"
+            class="google-btn shadow-4 full-width q-pa-sm"
             :params="params"
             :onSuccess="onSuccess"
             :onFailure="onFailure"
-            ><strong>Log in with Google</strong></GoogleLogin
-          >
+            ><strong
+              >Sign in with<q-img
+                style="width: 75px"
+                class="q-ml-md"
+                src="https://cdn.quasar.dev/img/layout-gallery/logo-google.svg"/></strong
+          ></GoogleLogin>
         </div>
       </q-card>
     </div>
@@ -111,9 +115,9 @@ export default {
     },
     redirect(user_type) {
       const routes = {
-        customer: "/",
-        admin: "/admin",
-        staff: "/staff"
+        customer: "/home",
+        admin: "/admin/dashboard",
+        staff: "/staff/dashboard"
       };
       this.$router.push(routes[user_type]);
     }
@@ -127,20 +131,15 @@ export default {
 
 <style scoped lang="scss">
 .google-btn {
-  color: floralwhite;
-  background-color: $red-6;
+  color: $red-6;
+  background-color: white;
   border: none;
   border-radius: 20px;
-  width: 100%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.144),
-    0 3px 10px 0 rgba(0, 0, 0, 0.096);
-  text-align: center;
   font-size: 15px;
-  padding: 10px;
   cursor: pointer;
 }
 .google-btn:hover {
-  background-color: $red-5;
+  background-color: rgb(248, 248, 248);
 }
 .google-btn:focus {
   outline: none;

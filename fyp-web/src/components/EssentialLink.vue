@@ -1,19 +1,11 @@
 <template>
-  <q-item
-    clickable
-    tag="a"
-    target="_blank"
-    :href="link"
-  >
-    <q-item-section
-      v-if="icon"
-      avatar
-    >
+  <q-item clickable :to="link" @click="onClick()">
+    <q-item-section v-if="icon" avatar>
       <q-icon :name="icon" />
     </q-item-section>
 
     <q-item-section>
-      <q-item-label>{{ title }}</q-item-label>
+      <q-item-label class="text-h5">{{ title }}</q-item-label>
       <q-item-label caption>
         {{ caption }}
       </q-item-label>
@@ -23,7 +15,7 @@
 
 <script>
 export default {
-  name: 'EssentialLink',
+  name: "EssentialLink",
   props: {
     title: {
       type: String,
@@ -32,18 +24,25 @@ export default {
 
     caption: {
       type: String,
-      default: ''
+      default: ""
     },
 
     link: {
       type: String,
-      default: '#'
+      default: "/"
     },
 
     icon: {
       type: String,
-      default: ''
+      default: ""
+    },
+
+    onClick: {
+      type: Function,
+      default: () => {
+        return null;
+      }
     }
   }
-}
+};
 </script>
