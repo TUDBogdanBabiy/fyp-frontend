@@ -53,6 +53,12 @@
               <q-card-actions align="around">
                 <q-btn
                   v-if="row.status == 'open'"
+                  :to="{
+                    name: timeslotsPage,
+                    params: {
+                      attraction_id: row._id
+                    }
+                  }"
                   no-caps
                   class="full-width"
                   flat
@@ -91,6 +97,7 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import { CUSTOMER_TIMESLOTS } from "app/src/router/routes";
 
 const columns = [
   {
@@ -111,7 +118,7 @@ const columns = [
 ];
 
 export default {
-  name: "CustomerDashboard",
+  name: "CustomerHome",
   components: {},
   props: {
     user: Object
@@ -119,7 +126,7 @@ export default {
   data() {
     return {
       columns: columns,
-      rows: rows,
+      timeslotsPage: CUSTOMER_TIMESLOTS,
       filter: "",
       loading: true
     };

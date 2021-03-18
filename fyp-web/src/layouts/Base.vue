@@ -1,5 +1,8 @@
 <template>
-  <q-layout view="hHh lpR fFf">
+  <q-layout
+    v-if="$route.path == '/login' || $route.path == '/register'"
+    view="hHh lpR fFf"
+  >
     <q-header elevated class="bg-accent text-white">
       <q-toolbar>
         <q-toolbar-title
@@ -18,6 +21,7 @@
       <router-view />
     </q-page-container>
   </q-layout>
+  <router-view v-else></router-view>
 </template>
 
 <script>

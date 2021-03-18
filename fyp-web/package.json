@@ -8,14 +8,16 @@
   "scripts": {
     "lint": "eslint --ext .js,.vue ./",
     "start": "quasar dev",
-    "cypress:open": "TZ=Ireland/Dublin cypress open",
-    "cypress:run": "TZ=Ireland/Dublin cypress run"
+    "cypress": "TZ=Ireland/Dublin cypress open",
+    "test": "TZ=Ireland/Dublin cypress run"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "axios": "^0.18.1",
     "core-js": "^3.6.5",
     "cypress": "^6.2.1",
+    "lodash": "^4.17.21",
+    "qr-code-styling": "^1.3.4",
     "quasar": "^1.0.0",
     "vue-google-login": "^2.0.5"
   },
