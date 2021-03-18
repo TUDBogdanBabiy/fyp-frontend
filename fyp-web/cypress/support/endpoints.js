@@ -17,9 +17,13 @@ function initialiseAuthEndpoints() {
     fixture: "customerUser"
   }).as("register");
 
-  cy.intercept("GET", `${BASE_URL}/auth/user`, { fixture: "customerUser" }).as(
-    "getUser"
-  );
+  cy.intercept("GET", `${BASE_URL}/auth/user`, req => {
+    const { body, headers } = req;
+    if (headers.auth_token == "faketokenforbogdantheadmin")
+      req.reply({ fixture: "adminUser" });
+    if (headers.auth_token == "faketokenforbogdanthecustomer")
+      req.reply({ fixture: "customerUser" });
+  }).as("getUser");
 }
 
 function initialiseAttractionEndpoints() {
@@ -37,7 +41,29 @@ function initialiseAttractionEndpoints() {
   }).as("deleteAttraction");
 }
 
+function initialiseBookingEndpoints() {
+  cy.intercept("GET", `${BASE_URL}/bookings`, { fixture: "bookings" }).as(
+    "getAllBookings"
+  );
+  cy.intercept("GET", `${BASE_URL}/bookings/customer/*`, {
+    fixture: "bookings"
+  }).as("getCustomerBookings");
+  cy.intercept("GET", `${BASE_URL}/bookings/attraction/*`, {
+    fixture: "bookings"
+  }).as("getAttractionBookings");
+  cy.intercept("POST", `${BASE_URL}/bookings`, { statusCode: 200 }).as(
+    "addBooking"
+  );
+  cy.intercept("PATCH", `${BASE_URL}/bookings/*`, {
+    statusCode: 200
+  }).as("updateBooking");
+  cy.intercept("DELETE", `${BASE_URL}/bookings/*`, {
+    statusCode: 200
+  }).as("deleteBooking");
+}
+
 beforeEach(() => {
   initialiseAuthEndpoints();
   initialiseAttractionEndpoints();
+  initialiseBookingEndpoints();
 });

@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: "EssentialLink",
+  name: "SideLink",
   props: {
     title: {
       type: String,
@@ -28,7 +28,7 @@ export default {
     },
 
     link: {
-      type: String,
+      type: [String, Object],
       default: "/"
     },
 

@@ -17,8 +17,8 @@ const getters = {
 
 const actions = {
   async signIn(context, user) {
-    const { username, user_type, token } = await loginService.create(user);
-    context.commit(SET_USER, { name: username, type: user_type });
+    const { username, user_type, _id, token } = await loginService.create(user);
+    context.commit(SET_USER, { name: username, type: user_type, _id });
     localStorage.token = token;
   },
   async signOut(context) {
@@ -26,21 +26,28 @@ const actions = {
     localStorage.removeItem("token");
   },
   async signUp(context, user) {
-    const { username, user_type, token } = await registerService.create(user);
-    context.commit(SET_USER, { name: username, type: user_type });
+    const { username, user_type, _id, token } = await registerService.create(
+      user
+    );
+    context.commit(SET_USER, { name: username, type: user_type, _id });
     localStorage.token = token;
   },
   async signInWithGoogle(context, id_token) {
-    const { username, user_type, token } = await googleLoginService._request({
+    const {
+      username,
+      user_type,
+      _id,
+      token
+    } = await googleLoginService._request({
       method: "post",
       headers: { id_token: id_token }
     });
-    context.commit(SET_USER, { name: username, type: user_type });
+    context.commit(SET_USER, { name: username, type: user_type, _id });
     localStorage.token = token;
   },
   async getUser(context) {
-    const { username, user_type, token } = await userService.list();
-    context.commit(SET_USER, { name: username, type: user_type });
+    const { username, user_type, _id, token } = await userService.list();
+    context.commit(SET_USER, { name: username, type: user_type, _id });
     localStorage.token = token;
   }
 };

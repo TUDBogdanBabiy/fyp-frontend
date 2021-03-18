@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh lpr lff">
+  <q-layout view="lHh LpR fFf">
     <q-header class="bg-accent text-white">
       <q-toolbar>
         <q-btn
@@ -18,7 +18,7 @@
     </q-header>
 
     <q-drawer
-      v-if="show"
+      v-if="show && user"
       v-model="leftDrawerOpen"
       show-if-above
       elevated
@@ -47,11 +47,7 @@
         </div>
       </q-img>
       <q-list>
-        <EssentialLink
-          v-for="link in links()"
-          :key="link.title"
-          v-bind="link"
-        />
+        <SideLink v-for="link in links()" :key="link.title" v-bind="link" />
       </q-list>
     </q-drawer>
 
@@ -62,12 +58,20 @@
 </template>
 
 <script>
-import EssentialLink from "components/EssentialLink.vue";
+import SideLink from "src/components/SideLink.vue";
 import { mapGetters, mapActions } from "vuex";
+import {
+  CUSTOMER_HOME,
+  CUSTOMER_BOOKINGS,
+  STAFF_DASHBOARD,
+  ADMIN_DASHBOARD,
+  ADMIN_ATTRACTIONS,
+  ADMIN_BOOKINGS
+} from "app/src/router/routes";
 
 export default {
   name: "MainLayout",
-  components: { EssentialLink },
+  components: { SideLink },
   data() {
     return {
       page: null,
@@ -75,9 +79,14 @@ export default {
       show: false,
       customerLinks: [
         {
-          title: "Customer Home",
+          title: "Home",
           caption: "View and Book into Attractions",
-          link: "/home"
+          link: CUSTOMER_HOME
+        },
+        {
+          title: "My Bookings",
+          caption: "Manage current bookings",
+          link: CUSTOMER_BOOKINGS
         },
         {
           title: "Logout",
@@ -92,12 +101,17 @@ export default {
         {
           title: "Admin Dashboard",
           caption: "Overview of the running system",
-          link: "/admin/dashboard"
+          link: ADMIN_DASHBOARD
         },
         {
           title: "Attractions",
           caption: "View & configure all attractions",
-          link: "/admin/attractions"
+          link: ADMIN_ATTRACTIONS
+        },
+        {
+          title: "Bookings",
+          caption: "Manage all existing bookings",
+          link: ADMIN_BOOKINGS
         },
         {
           title: "Logout",
@@ -110,9 +124,9 @@ export default {
       ],
       staffLinks: [
         {
-          title: " Staff Dashboard",
+          title: "Staff Dashboard",
           caption: "Manage Attraction Bookings",
-          link: "/dashboard"
+          link: STAFF_DASHBOARD
         },
         {
           title: "Logout",
@@ -144,15 +158,15 @@ export default {
   },
   async created() {
     if (this.user) {
-      this.show = true;
+      await this.getUser();
     } else {
       try {
         await this.getUser();
-        this.show = true;
       } catch (error) {
         this.$router.push("/login");
       }
     }
+    this.show = true;
   }
 };
 </script>

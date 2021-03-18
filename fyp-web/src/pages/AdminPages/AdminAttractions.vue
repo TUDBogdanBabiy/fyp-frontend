@@ -115,8 +115,34 @@
                         </q-card>
                       </q-dialog>
                     </q-item-section>
-                  </q-item> </q-list
-              ></q-btn-dropdown>
+                  </q-item>
+                  <q-item
+                    id="open__close__item"
+                    clickable
+                    @click="toggleAttractionStatus(row)"
+                  >
+                    <q-item-section>
+                      <q-icon
+                        :color="row.status == 'open' ? 'accent' : 'green'"
+                        :name="
+                          row.status == 'open'
+                            ? 'no_meeting_room'
+                            : 'meeting_room'
+                        "
+                        size="20px"
+                      />
+                      <q-item-label
+                        :class="
+                          row.status == 'open' ? 'text-accent' : 'text-green'
+                        "
+                        >{{
+                          row.status == "open" ? "Close" : "Open"
+                        }}</q-item-label
+                      >
+                    </q-item-section>
+                  </q-item>
+                </q-list></q-btn-dropdown
+              >
             </q-td>
           </q-tr>
         </template>
@@ -441,6 +467,16 @@ export default {
       slotDuration: null,
       showDeleteDialog: false,
       form: {
+        title: null,
+        price: null,
+        description: null,
+        time_slots: null,
+        max_weight: null,
+        min_height: null,
+        min_age: null,
+        max_customers: null,
+        opening_time: null,
+        closing_time: null,
         time_slots: []
       }
     };
@@ -538,6 +574,16 @@ export default {
       this.editItemId = _id;
       this.isEdit = true;
       this.showForm = true;
+    },
+    async toggleAttractionStatus(attraction) {
+      try {
+        await this.updateAttraction({
+          id: attraction._id,
+          data: {
+            status: attraction.status == "open" ? "closed" : "open"
+          }
+        });
+      } catch (error) {}
     },
     async removeItem({ _id }) {
       this.loading = true;
