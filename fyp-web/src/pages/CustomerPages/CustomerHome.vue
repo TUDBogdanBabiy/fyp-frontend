@@ -7,7 +7,6 @@
         grid
         :loading="loading"
         :data="attractions"
-        :columns="columns"
         row-key="name"
         :filter="filter"
         hide-header
@@ -99,24 +98,6 @@
 import { mapActions, mapGetters } from "vuex";
 import { CUSTOMER_TIMESLOTS } from "app/src/router/routes";
 
-const columns = [
-  {
-    name: "title",
-    label: "Dessert (100g serving)",
-    field: "title",
-    sortable: true
-  },
-  {
-    name: "calories",
-    align: "center",
-    label: "Calories",
-    field: "calories",
-    sortable: true
-  },
-  { name: "price", label: "Price (€)", field: "price", sortable: true },
-  { name: "status", label: "Status", field: "status" }
-];
-
 export default {
   name: "CustomerHome",
   components: {},
@@ -125,7 +106,6 @@ export default {
   },
   data() {
     return {
-      columns: columns,
       timeslotsPage: CUSTOMER_TIMESLOTS,
       filter: "",
       loading: true

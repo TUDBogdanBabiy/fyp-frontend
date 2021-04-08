@@ -147,8 +147,6 @@ export default {
           end_time
         });
       });
-      this.show = false;
-      this.show = true;
     },
     async chooseTimeslot(start_time, end_time) {
       try {

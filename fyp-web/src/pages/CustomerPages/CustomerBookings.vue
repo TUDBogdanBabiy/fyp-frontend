@@ -255,7 +255,7 @@ export default {
       this.loading = true;
       this.showRemoveDialog = false;
       try {
-        await this.deleteBooking(_id);
+        await this.deleteBooking({ id: _id, customerId: this.user._id });
       } catch (error) {
         console.error(error);
       }

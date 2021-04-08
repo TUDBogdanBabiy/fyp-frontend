@@ -1,10 +1,6 @@
 const BASE_URL = "http://localhost:3000";
 
 function initialiseAuthEndpoints() {
-  // cy.intercept("POST", `${BASE_URL}/auth/login`, { fixture: "user" }).as(
-  //   "login"
-  // );
-
   cy.intercept("POST", `${BASE_URL}/auth/login`, req => {
     const { body } = req;
     if (body.email == "admin@gmail.com") req.reply({ fixture: "adminUser" });

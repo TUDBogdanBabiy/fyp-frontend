@@ -19,9 +19,9 @@ const actions = {
     await bookingService.update(id, data);
     return await context.dispatch("getAllBookings");
   },
-  async deleteBooking(context, id) {
+  async deleteBooking(context, { id, customerId }) {
     await bookingService.delete(id);
-    return await context.dispatch("getAllBookings");
+    return await context.dispatch("getCustomerBookings", customerId);
   },
   async addBooking(context, data) {
     await bookingService.create(data);

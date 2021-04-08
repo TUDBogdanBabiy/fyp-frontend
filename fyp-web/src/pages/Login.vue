@@ -106,8 +106,7 @@ export default {
       this.$router.push("/");
     },
     onFailure() {
-      console.error();
-      ("Failed to retrieve Google account information");
+      console.error("Failed to retrieve Google account information");
     },
     async onSubmit() {
       await this.signIn({ email: this.email, password: this.password });

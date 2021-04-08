@@ -545,8 +545,6 @@ export default {
         newEndTime = newEndTime + parseInt(this.slotDuration);
       }
       this.slotDuration = null;
-      this.showForm = false;
-      this.showForm = true;
     },
     initEditForm({
       title,
