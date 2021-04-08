@@ -116,9 +116,9 @@ module.exports = function(/* ctx */) {
       workboxPluginMode: "GenerateSW", // 'GenerateSW' or 'InjectManifest'
       workboxOptions: {}, // only for GenerateSW
       manifest: {
-        name: `FYP-Frontend`,
-        short_name: `FYP-Frontend`,
-        description: `A Quasar Framework app`,
+        name: `Park Manager`,
+        short_name: `Park Manager`,
+        description: `An Amusement Park Management System`,
         display: "standalone",
         orientation: "portrait",
         background_color: "#ffffff",

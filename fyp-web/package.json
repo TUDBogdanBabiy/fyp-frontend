@@ -1,8 +1,8 @@
 {
   "name": "fyp-web",
   "version": "0.0.1",
-  "description": "A Quasar Framework app",
-  "productName": "FYP-Frontend",
+  "description": "An Amusement Park Management System",
+  "productName": "Park Manager",
   "author": "TUDBogdanBabiy <c17355926@mytudublin.ie>",
   "private": true,
   "scripts": {
